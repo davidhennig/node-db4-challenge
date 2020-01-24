@@ -12,13 +12,13 @@ function getRecipes() {
 
 function getShoppingList(recipe_id) {
   return db("recipe_ingredients")
-    .select("*")
     .join("ingredients", "ingredients.id", "recipe_ingredients.ingredient_id")
     .where("recipe_ingredients.recipe_id", recipe_id);
 }
 
-function getInstructions(recipe_id) {
-  return db("")
-    .join()
-    .where();
+function getInstructions(id) {
+  return db("recipes")
+    .select("steps")
+    .where({ id })
+    .first();
 }

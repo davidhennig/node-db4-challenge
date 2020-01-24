@@ -1,5 +1,5 @@
 const express = require("express");
-const recipes = require("./recipeModel.js");
+const recipes = require("./model.js");
 const router = express.Router();
 router.get("/", (req, res) => {
   recipes
@@ -22,5 +22,10 @@ router.get("/:id", (req, res) => {
       console.log(err);
       return res.status(500).json({ error: "Something went wrong." });
     });
+});
+router.get("/:id/steps", (req, res) => {
+  recipes.getInstructions(req.params.id).then(response => {
+    return res.status(200).json({ response });
+  });
 });
 module.exports = router;
